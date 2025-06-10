@@ -11,9 +11,9 @@
 
     <script>
         //PASO 1. DEFINIR LAS CREDENCIALES
-        const tokenAirtable='patyJHx1y9c1Pyvq5.23a9fb923b19612d819a1290cb150493c900dda7f5a52a7928a33a59555efa0b';
-        const idBaseDatos='appc85C8WaCw1dT7J';
-        const nombreTabla='Estudiante';
+        const tokenAirtable='';
+        const idBaseDatos='';
+        const nombreTabla='';
 
         //PASO 2. DEFINIR LA URL DE CONEXION
         const url=`https://api.airtable.com/v0/${idBaseDatos}/${nombreTabla}`
@@ -29,12 +29,17 @@
                 const lista=document.getElementById('listaEstudiantes');
                 datos.records.forEach(registro=>{
                     const nombre=registro.fields.Nombre;
-                    const edad=registro.fields.Edad;
                     const carrera=registro.fields.Carrera;
+                    const edad=registro.fields.Edad;
                     const celular=registro.fields.Celular;
-                })
+                    const registros=document.createElement('li')
+                    registros.textContent=`${nombre} - ${carrera} - ${edad} años`;
+                    lista.appendChild(registros);
+                });
             }
-        )
+        ).catch(error=>{
+            alert("Error al obtener los datos ",error)
+        });
 
     </script>
 </body>
