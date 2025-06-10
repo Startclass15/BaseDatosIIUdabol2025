@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Estudiantes</h1>
+    <ul id="listaEstudiantes"></ul>
+
+    <script>
+        //PASO 1. DEFINIR LAS CREDENCIALES
+        const tokenAirtable='patyJHx1y9c1Pyvq5.23a9fb923b19612d819a1290cb150493c900dda7f5a52a7928a33a59555efa0b';
+        const idBaseDatos='appc85C8WaCw1dT7J';
+        const nombreTabla='Estudiante';
+
+        //PASO 2. DEFINIR LA URL DE CONEXION
+        const url=`https://api.airtable.com/v0/${idBaseDatos}/${nombreTabla}`
+    
+        //PASO3. VALIDAR LAS CREDENCIALES
+        fetch(url,{
+            headers:{
+                Auhorization: `Bearer ${tokenAirtable}`
+            }
+        }).then(res=>res.json())
+        .then(
+            datos=>{
+                const lista=document.getElementById('listaEstudiantes');
+                datos.records.forEach(registro=>{
+                    const nombre=registro.fields.Nombre;
+                    const edad=registro.fields.Edad;
+                    const carrera=registro.fields.Carrera;
+                    const celular=registro.fields.Celular;
+                })
+            }
+        )
+
+    </script>
+</body>
+</html>
